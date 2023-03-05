@@ -9,3 +9,7 @@ python3 -m virtualenv venv
 pip install Flask
 pip install rsa
 pip install pycryptodomex
+pip install scikit-learn
+pip install Pillow
+pip install matplotlib
+pip install gunicorn
