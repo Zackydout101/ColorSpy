@@ -1,17 +1,17 @@
 from flask import Flask, request, jsonify
 import rsa
 import rsa.randnum
-from Crypto.Cipher import AES
-from Crypto.Random import get_random_bytes
+# from Crypto.Cipher import AES
+# from Crypto.Random import get_random_bytes
 from model import detectColor 
-from Crypto.PublicKey import RSA
+# from Crypto.PublicKey import RSA
 import io
 
 app = Flask(__name__)
 
 # Generate the Encryption Keys
-(pubkey, privkey) = rsa.newkeys(512)
-aes_key = get_random_bytes(16)
+# (pubkey, privkey) = rsa.newkeys(512)
+# aes_key = get_random_bytes(16)
 
 
 @app.route("/")
