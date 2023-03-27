@@ -3,9 +3,10 @@ from matplotlib.pyplot import axis
 from sklearn.cluster import KMeans
 import numpy as np
 import matplotlib.colors as mcolors
-from color import names
+from colors import names
 import io
 import math
+
 def detectColor(img) -> str:
     img = io.BytesIO(img)
     img = Image.open(img)

@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
 import rsa
 import rsa.randnum
-# from Crypto.Cipher import AES
-# from Crypto.Random import get_random_bytes
+from Crypto.Cipher import AES
+from Crypto.Random import get_random_bytes
 from model import detectColor 
 # from Crypto.PublicKey import RSA
 import io
@@ -10,8 +10,8 @@ import io
 app = Flask(__name__)
 
 # Generate the Encryption Keys
-# (pubkey, privkey) = rsa.newkeys(512)
-# aes_key = get_random_bytes(16)
+(pubkey, privkey) = rsa.newkeys(512)
+aes_key = get_random_bytes(16)
 
 
 @app.route("/")
@@ -35,8 +35,7 @@ def get_public_key():
     # # Encrypt the server's AES key with the client's RSA public key so that only the client can decrypt it
     # aes_pubkey = rsa.encrypt(aes_key, client_pubkey)#.decode("utf-8",errors="ignore") # Encrypt the AES key with the RSA public key
 
-    # return jsonify({"pubkey":pubkey.save_pkcs1().decode("utf-8"),"aes_pubkey":aes_pubkey.hex()})
-    return "hello"
+    return jsonify({"pubkey":pubkey.save_pkcs1().decode("utf-8"),"aes_pubkey":aes_pubkey.hex()})
 
 @app.route("/process",methods=["POST"])
 def process_image():
@@ -44,16 +43,16 @@ def process_image():
     image = bytes.fromhex(image)
     # image = io.BytesIO(image)
 
-    # tag = request.form["tag"]
-    # tag = bytes.fromhex(tag)
+    tag = request.form["tag"]
+    tag = bytes.fromhex(tag)
     
-    # nonce = request.form["nonce"]
-    # nonce = bytes.fromhex(nonce)
+    nonce = request.form["nonce"]
+    nonce = bytes.fromhex(nonce)
     
-    # pubKey = request.form["key"]
+    pubKey = request.form["key"]
    
-    # # Decrypt the image
-    # image = decrypt(image,tag,nonce)
+    # Decrypt the image
+    image = decrypt(image,tag,nonce)
 
     # Detect the color of the image
     color = detectColor(image)
